@@ -84,8 +84,9 @@ The interface is intentionally minimal, emphasizing usability, predictable navig
 ## Example Output
 
 ```text id="37mwbj"
-1. Study Python - Complete OOP module [Not Completed]
-2. Submit Assignment - Upload GitHub repository [Completed]
+1. Study Python - Finish loops [Completed]
+2. Exercise - 30 minutes walk [Not Completed]
+3. Assignment - Submit Assignment [Not Completed]
 ```
 
 ---
