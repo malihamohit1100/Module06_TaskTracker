@@ -26,8 +26,8 @@ Each task is represented as a structured dictionary containing descriptive metad
 ```python id="qu16hz"
 {
     "title": "Study Python",
-    "description": "Complete OOP module",
-    "completed": False
+    "description": "Finish loops",
+    "completed": True
 }
 ```
 
