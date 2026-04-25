@@ -1,14 +1,17 @@
 [
     {
         "title": "Study python",
-        "description": "Finish loops"
+        "description": "Finish loops",
+        "completed": true
     },
     {
         "title": "Exercise",
-        "description": "30 minutes walk"
+        "description": "30 minutes walk",
+        "completed": false
     },
     {
         "title": "Assignment",
-        "description": "Submit Assignment"
+        "description": "Submit Assignment",
+        "completed": false
     }
 ]

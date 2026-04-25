@@ -1,6 +1,5 @@
 import json
 
-
 class TaskManager:
     def __init__(self):
         self.tasks = []
@@ -10,6 +9,11 @@ class TaskManager:
         try:
             with open("tasks.json", "r") as file:
                 self.tasks = json.load(file)
+
+            for task in self.tasks:
+                if "completed" not in task:
+                    task["completed"] = False
+
         except FileNotFoundError:
             self.tasks = []
 
@@ -23,7 +27,8 @@ class TaskManager:
 
         task = {
             "title": title,
-            "description": description
+            "description": description,
+            "completed": False
         }
 
         self.tasks.append(task)
@@ -37,8 +42,12 @@ class TaskManager:
 
         print("\nTasks:")
         print("------")
+
         for i, task in enumerate(self.tasks, start=1):
-            print(f"{i}. {task['title']} - {task['description']}")
+            status = "Completed" if task["completed"] else "Not Completed"
+
+            print(f"{i}. {task['title']} - {task['description']} [{status}]")
+
         print()
 
     def delete_task(self):
@@ -61,13 +70,34 @@ class TaskManager:
         except ValueError:
             print("Please enter a valid number.\n")
 
+    def mark_completed(self):
+        if not self.tasks:
+            print("No tasks available.\n")
+            return
+
+        self.view_tasks()
+
+        try:
+            task_number = int(input("Enter task number to mark as completed: "))
+
+            if 1 <= task_number <= len(self.tasks):
+                self.tasks[task_number - 1]["completed"] = True
+                self.save_tasks()
+                print("Task marked as completed!\n")
+            else:
+                print("Invalid task number.\n")
+
+        except ValueError:
+            print("Please enter a valid number.\n")
+
     def run(self):
         while True:
             print("===== Task Tracker =====")
             print("1. Add Task")
             print("2. View Tasks")
             print("3. Delete Task")
-            print("4. Exit")
+            print("4. Mark Task as Completed")
+            print("5. Exit")
 
             choice = input("Enter choice: ").strip()
 
@@ -78,6 +108,8 @@ class TaskManager:
             elif choice == "3":
                 self.delete_task()
             elif choice == "4":
+                self.mark_completed()
+            elif choice == "5":
                 print("Exiting Task Tracker. Goodbye!")
                 break
             else:
@@ -87,8 +119,6 @@ class TaskManager:
 if __name__ == "__main__":
     manager = TaskManager()
     manager.run()
-
-
 
 
 
