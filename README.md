@@ -1,151 +1,82 @@
 # Simple Task Tracker
 
-## Project Overview
+## Overview
 
-This project is a command-line Task Tracker developed in Python with a focus on clean software design, modularity, and persistent data management. It provides users with a lightweight system for organizing daily tasks while demonstrating practical application of core computer science concepts such as object-oriented programming, structured data modeling, file persistence, and user-driven control flow.
+This is a simple Task Tracker project made with Python. It helps users manage daily tasks using a menu-driven program. Users can add tasks, view all tasks, delete tasks, and update task priority.
 
-Although intentionally simple in scope, the project was designed with scalability and maintainability in mind. The architecture allows additional features to be integrated with minimal structural changes.
-
----
-
-## Core Features
-
-* Add tasks with custom titles and descriptions
-* View all tasks in a structured numbered format
-* Delete tasks by selecting task index
-* Mark tasks as completed
-* Persist task data using JSON storage
-* Automatically restore saved tasks on program startup
+The project also uses a JSON file to save tasks, so the data stays saved even after closing the program.
 
 ---
 
-## Data Model
+## Features
 
-Each task is represented as a structured dictionary containing descriptive metadata and completion state:
+* Add a new task
+* View all tasks
+* Delete a task
+* Update task priority
+* Save tasks in JSON file
+* Load saved tasks when program starts
 
-```python id="qu16hz"
+---
+
+## Task Structure
+
+Each task is stored like this:
+
+```python id="a2f49k"
 {
-    "title": "Study Python",
+    "title": "Study python",
     "description": "Finish loops",
-    "completed": True
+    "priority": "High"
 }
 ```
 
-Tasks are maintained in-memory as a list of dictionaries, providing efficient sequential access and straightforward serialization.
-
 ---
 
-## System Design
+## Menu
 
-## Object-Oriented Architecture
-
-The application is centered around a `TaskManager` class responsible for encapsulating both state and behavior.
-
-Responsibilities include:
-
-* Maintaining task state (`self.tasks`)
-* Handling task operations
-* Managing persistent storage
-* Running the interactive menu system
-
-This class-based design improves cohesion, readability, and future extensibility.
-
----
-
-## Persistence Layer
-
-Rather than relying solely on runtime memory, the project implements a lightweight persistence mechanism through JSON.
-
-### Workflow:
-
-* On launch, previously saved tasks are loaded from `tasks.json`
-* Any state-changing operation updates the file immediately
-* User progress remains available across sessions
-
-This approach provides a practical alternative to database integration for small-scale applications.
-
----
-
-## User Interface Flow
-
-```text id="v6i4ru"
+```text id="yd8q7s"
 ===== Task Tracker =====
 1. Add Task
 2. View Tasks
 3. Delete Task
-4. Mark Task as Completed
+4. Update Task Priority
 5. Exit
 ```
 
-The interface is intentionally minimal, emphasizing usability, predictable navigation, and low cognitive overhead.
+---
+
+## Priority Levels
+
+The program uses three priority levels:
+
+* High
+* Medium
+* Low
 
 ---
 
-## Example Output
+## Concepts Used
 
-```text id="37mwbj"
-1. Study Python - Finish loops [Completed]
-2. Exercise - 30 minutes walk [Not Completed]
-3. Assignment - Submit Assignment [Not Completed]
-```
-
----
-
-## Technical Concepts Demonstrated
-
-* Object-Oriented Programming (Classes, Methods, Encapsulation)
-* Python Data Structures (Lists, Dictionaries)
-* File Handling
-* JSON Serialization / Deserialization
-* Input Validation
-* Conditional Logic
-* Iteration and Control Flow
+* Python Class and Object
+* Functions / Methods
+* List and Dictionary
+* Loop
+* If-Else Condition
+* JSON File Handling
 * Exception Handling
 
 ---
 
-## Engineering Considerations
+## How It Works
 
-Several design decisions were made to improve reliability and maintainability:
-
-* Separation of concerns between storage, logic, and interface
-* Immediate persistence after state mutation
-* Readable and modular method design
-* Graceful handling of missing storage files
-* Expandable architecture for future features
-
----
-
-## Potential Extensions
-
-Future versions of the project could include:
-
-* Task editing functionality
-* Priority levels and deadlines
-* Search and filtering
-* Completed / pending task views
-* Data analytics (completion rate, productivity trends)
-* GUI implementation using Tkinter or PyQt
-* Database migration using SQLite or PostgreSQL
-* Multi-user authentication system
-
----
-
-## Why This Project Matters
-
-While simple at the surface level, this project reflects the same foundational engineering patterns used in larger production systems:
-
-* persistent state management
-* modular design
-* user interaction loops
-* CRUD-style operations
-* maintainable code organization
-
-It serves as an effective demonstration of translating programming fundamentals into a functional software product.
+1. Program starts and loads tasks from `tasks.json`
+2. User selects an option from menu
+3. Tasks can be added, viewed, deleted, or updated
+4. Changes are saved automatically
 
 ---
 
 ## Conclusion
 
-This Task Tracker represents more than a beginner exercise—it is a compact example of disciplined software development using Python fundamentals. By combining practical functionality with clean architecture, the project establishes a strong foundation for progression into larger application development and backend systems engineering.
-
+This project helped me practice Python basics, object-oriented programming, and file handling. It is a useful beginner project for learning how real programs store and manage data.
