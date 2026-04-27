@@ -2,16 +2,16 @@
     {
         "title": "Study python",
         "description": "Finish loops",
-        "completed": true
+        "priority": "High"
     },
     {
         "title": "Exercise",
         "description": "30 minutes walk",
-        "completed": false
+        "priority": "Low"
     },
     {
         "title": "Assignment",
         "description": "Submit Assignment",
-        "completed": false
+        "priority": "High"
     }
 ]

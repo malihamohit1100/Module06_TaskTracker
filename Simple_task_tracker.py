@@ -11,8 +11,8 @@ class TaskManager:
                 self.tasks = json.load(file)
 
             for task in self.tasks:
-                if "completed" not in task:
-                    task["completed"] = False
+                if "priority" not in task:
+                    task["priority"] = "Medium"
 
         except FileNotFoundError:
             self.tasks = []
@@ -25,10 +25,18 @@ class TaskManager:
         title = input("Enter Title: ").strip()
         description = input("Enter Description: ").strip()
 
+        while True:
+            priority = input("Enter Priority (High/Medium/Low): ").strip().title()
+
+            if priority in ["High", "Medium", "Low"]:
+                break
+            else:
+                print("Invalid priority. Please enter High, Medium, or Low.")
+
         task = {
             "title": title,
             "description": description,
-            "completed": False
+            "priority": priority
         }
 
         self.tasks.append(task)
@@ -44,9 +52,7 @@ class TaskManager:
         print("------")
 
         for i, task in enumerate(self.tasks, start=1):
-            status = "Completed" if task["completed"] else "Not Completed"
-
-            print(f"{i}. {task['title']} - {task['description']} [{status}]")
+            print(f"{i}. {task['title']} - {task['description']} [{task['priority']} Priority]")
 
         print()
 
@@ -70,7 +76,7 @@ class TaskManager:
         except ValueError:
             print("Please enter a valid number.\n")
 
-    def mark_completed(self):
+    def update_priority(self):
         if not self.tasks:
             print("No tasks available.\n")
             return
@@ -78,12 +84,21 @@ class TaskManager:
         self.view_tasks()
 
         try:
-            task_number = int(input("Enter task number to mark as completed: "))
+            task_number = int(input("Enter task number to update priority: "))
 
             if 1 <= task_number <= len(self.tasks):
-                self.tasks[task_number - 1]["completed"] = True
-                self.save_tasks()
-                print("Task marked as completed!\n")
+
+                while True:
+                    new_priority = input("Enter new priority (High/Medium/Low): ").strip().title()
+
+                    if new_priority in ["High", "Medium", "Low"]:
+                        self.tasks[task_number - 1]["priority"] = new_priority
+                        self.save_tasks()
+                        print("Task priority updated successfully!\n")
+                        break
+                    else:
+                        print("Invalid priority. Please enter High, Medium, or Low.")
+
             else:
                 print("Invalid task number.\n")
 
@@ -96,7 +111,7 @@ class TaskManager:
             print("1. Add Task")
             print("2. View Tasks")
             print("3. Delete Task")
-            print("4. Mark Task as Completed")
+            print("4. Update Task Priority")
             print("5. Exit")
 
             choice = input("Enter choice: ").strip()
@@ -108,7 +123,7 @@ class TaskManager:
             elif choice == "3":
                 self.delete_task()
             elif choice == "4":
-                self.mark_completed()
+                self.update_priority()
             elif choice == "5":
                 print("Exiting Task Tracker. Goodbye!")
                 break
@@ -119,7 +134,6 @@ class TaskManager:
 if __name__ == "__main__":
     manager = TaskManager()
     manager.run()
-
 
 
         
